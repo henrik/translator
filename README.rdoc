@@ -52,17 +52,17 @@ For controllers/views/mailers it is:
       # the action name
       index:
         key: "Hello World"
-      
-      # partials w/o underscore (template "_footer.erb")      
-      footer: 
+
+      # partials w/o underscore (template "_footer.erb")
+      footer:
         key: "My Copyright"
-    
+
     # "layouts" is fixed
     layouts:
       # the layout name (template "main.erb")
       main:
         key: "My App Name"
-    
+
     # for shared partials called like: render :template => "shared/user"
     # where "shared" is the directory name
     shared:
@@ -75,12 +75,12 @@ For controllers/views/mailers it is:
       # the method name (does not include "deliver")
       comment_notification:
         subject: "New Comment"
-        
+
 For models it is:
   en:
     # The model name
     blog_post:
-      key: "Custom validation error" 
+      key: "Custom validation error"
 
 
 === Key Lookup
@@ -98,8 +98,8 @@ and then are shared between actions in a controller defined in the locale bundle
 
 If Translator doesn't find the original key, it will remove a layer of scoping and try again.
 So if in our Blogs controller +show+ action we want to set a <tt>flash[:error]</tt> to a permission denied message it can find the string by calling <tt>t('errors.permission_denied')</tt>.
-Translator will first look for "blog_posts.show.errors.permission_denied", which doesn't exist. So it will then try to find 
-"blog_posts.errors.permission_denied" and return the correct string. This can be used to create greater levels of scoping, or to force finding 
+Translator will first look for "blog_posts.show.errors.permission_denied", which doesn't exist. So it will then try to find
+"blog_posts.errors.permission_denied" and return the correct string. This can be used to create greater levels of scoping, or to force finding
 global strings (e.g. <tt>t("global.app_name")</tt>).
 
 == Graceful Locale Fallback
@@ -108,14 +108,14 @@ Let's say you've extracted all your English strings, and even had them translate
 
   # In the configuration
   I18n.default_locale = :en
-  
+
   # Enable the fallback mode to try :es first, then :en
   Translator.fallback(true)
-  
+
   # Set in the code based on user's preference, their IP address, etc.
   I18n.locale = :es
-  
-  # Everything else stays the same, but after Translator tries the normal scoping rules 
+
+  # Everything else stays the same, but after Translator tries the normal scoping rules
   # in Spanish (:es), it will apply the same rules for the default locale (:en)
   t('page_title')
 
@@ -130,8 +130,8 @@ Let's say you've extracted all your English strings, and even had them translate
     end
 
 * If you're trying to avoid hard-coding strings in tests, you can still use the lookup that is added to models and controllers:
-  
-    # Inside a test exercising a BlogPostController (@controller created in setup method) 
+
+    # Inside a test exercising a BlogPostController (@controller created in setup method)
     get :show, :id => 123
     # the byline should be in the body - uses @controller to make lookup easy (automatically knows controller name and action)
     assert_match @controller.t('byline', :name => "Mike"), @response.body
