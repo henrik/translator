@@ -140,6 +140,21 @@ Let's say you've extracted all your English strings, and even had them translate
 
 * Rake task to validate that YAML files are, in fact, valid YAML. Useful when getting back translations from a 3rd party service, this can be a quick way to catch a missing quote. Run like <tt>rake i18n:validate_yml</tt> and it will check all .yml files below <tt>RAILS_ROOT/config/locales</tt>.
 
+== Running the Plugin Test Suite
+
+The test suite only runs within a Rails app:
+
+  cd vendor/plugins/translator
+  rake
+
+Since they load the environment, you may want to create a fresh Rails app just for running the tests during development:
+
+  rails translator_app
+  cd translator_app
+  script/plugin install git://github.com/graysky/translator.git
+  cd vendor/plugins/translator
+  rake
+
 == Changelog
 
 1.0.0 - 4/17/2009 - Declaring 1.0 after successfully using Translator in production.
