@@ -259,17 +259,17 @@ module ActionView #:nodoc:
       unless self.template.nil?
         # The outer scope will typically be the controller name ("blog_posts")
         # but can also be a dir of shared partials ("shared").
-        outer_scope = self.template.base_path
-        
+        outer_scope = self.template.base_path.split('/')
+
         # The template will be the view being rendered ("show.erb" or "_ad.erb")
         inner_scope = self.template.name
-        
+
         # Partials template names start with underscore, which should be removed
         inner_scope.sub!(/^_/, '')
 
-        scope = [outer_scope, inner_scope]
+        scope = [outer_scope, inner_scope].flatten
       end
-      
+
       # In the case of a missing translation, fall back to letting TranslationHelper
       # put in span tag for a translation_missing.
       begin
@@ -300,14 +300,15 @@ end
 
 module ActionController #:nodoc:
   class Base
-    
+
     # Add a +translate+ (or +t+) method to ActionController that is context-aware of what controller and action
     # is being invoked. Initial scoping will be [:controller_name :action_name] when looking up keys. Example would be
     # +['posts' 'show']+ for the +PostsController+ and +show+ action.
     def translate_with_context(key, options={})
-      Translator.translate_with_scope([self.controller_name, self.action_name], key, options)
+      scope = [self.controller_path.split('/'), self.action_name].flatten
+      Translator.translate_with_scope(scope, key, options)
     end
-  
+
     alias_method_chain :translate, :context
     alias :t :translate
   end

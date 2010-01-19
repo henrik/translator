@@ -4,14 +4,21 @@ en:
     sub:
       key: "Hello i18n World"
 
+  # Namespaced controller
+  admin:
+    home:
+      index:
+        title: "Halloa!"
+        welcome_home: "Welcome home!"
+
   # Controller
   blog_posts:
     # shared strings
     bio: "Hello!"
     subscribe_feed: "Subscribe to my feed!"
-    
+
     # typical actions
-    index: 
+    index:
       title: "My Blog Posts"
       intro: "Welcome to the blog of {{owner}}"
     # specific post
