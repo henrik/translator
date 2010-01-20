@@ -157,6 +157,7 @@ Since they load the environment, you may want to create a fresh Rails app just f
 
 == Changelog
 
+1.1.0 - 1/19/2010 - Support namespaced controllers and their views.
 1.0.0 - 4/17/2009 - Declaring 1.0 after successfully using Translator in production.
 
 Bug reports welcome. {Patches very welcome}[http://github.com/graysky/translator].

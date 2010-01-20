@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{translator}
-  s.version = "1.0.0"
+  s.version = "1.1.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Mike Champion"]
@@ -17,10 +17,12 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION.yml",
     "lib/translator.rb",
+    "test/fixtures/app/controllers/admin/home_controller.rb",
     "test/fixtures/app/controllers/blog_posts_controller.rb",
     "test/fixtures/app/helpers/blog_posts_helper.rb",
     "test/fixtures/app/models/blog_comment_mailer.rb",
     "test/fixtures/app/models/blog_post.rb",
+    "test/fixtures/app/views/admin/home/index.erb",
     "test/fixtures/app/views/blog_comment_mailer/comment_notification.rhtml",
     "test/fixtures/app/views/blog_posts/_footer.erb",
     "test/fixtures/app/views/blog_posts/about.erb",
@@ -42,6 +44,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.1}
   s.summary = %q{Rails extentions to simplify internationalization}
   s.test_files = [
+    "test/fixtures/app/controllers/admin/home_controller.rb",
     "test/fixtures/app/controllers/blog_posts_controller.rb",
     "test/fixtures/app/helpers/blog_posts_helper.rb",
     "test/fixtures/app/models/blog_comment_mailer.rb",
